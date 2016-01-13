@@ -28,7 +28,7 @@ def on_message(message):
         second = splitted[1]
         third = splitted[2]
 
-        r=requests.get('https://osu.ppy.sh/api/get_user?k=8123146671c00e1779761c870082212e813614c2&u='+third)
+        r=requests.get('https://osu.ppy.sh/api/get_user?k=API Key&u='+third)
         data=r.json()
         for player in data:
             client.send_message(message.channel, 'Username : ' + player['username'] + '\n' + 'Performance Points : ' + "%.2f" % float(player['pp_raw']) + '\n' +  'Accuracy : ' + "%.2f" % float(player['accuracy']) + '\n' + 'Playcount : ' + player['playcount'] + '\n' +'Profile Link : https://osu.ppy.sh/u/'+player['user_id'])
