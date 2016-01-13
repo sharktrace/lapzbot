@@ -12,12 +12,9 @@ Current list of commands
 @lapzbot top <username> :- Displays the top 5 plays of the user. Currently experimental. Refer to above on how to format your username.
 
 
-Issued to be fixed
-Individual link embedding
 
-In case of a bug please send me a PM  and/or visit #programming
 
-Lapzbot meme list
+# Lapzbot meme list
 
 !kappa
 
