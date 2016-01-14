@@ -2,9 +2,12 @@ import discord
 import urllib.request
 import json
 import requests
+import bs4
+import time
+##import lxml.html
 
 client = discord.Client()
-client.login('username', 'password')
+client.login('Username', 'Password')
 
 @client.event
 def on_message(message):
@@ -19,7 +22,7 @@ def on_message(message):
         client.send_message(message.channel, 'Hello {}, the following commands are available:- `hello`, `help`, `stats <username>`, `top <username>`, `wtf`'.format(message.author.mention()) +'\n'+'For stats <username> and top <username> make sure to use _(underscore) if your username contains 2 words or more. Example:- `@lapzbot stats John_Smith`')
 
     if message.content.startswith('{} wtf'.format(client.user.mention())):
-        client.send_message(message.channel, 'WTF!!! {}, dont try to molest me. I am a kawaii little bot.'.format(message.author.mention()))
+        client.send_message(message.channel, 'WTF!!! {}'.format(message.author.mention()))
 ## osu! API functions-----------------------------------------------------------------------------------
     if message.content.startswith('{} stats'.format(client.user.mention())):
         my_string = message.content    
@@ -27,11 +30,18 @@ def on_message(message):
         first = splitted[0]
         second = splitted[1]
         third = splitted[2]
+## Rework the permissions later
+##        allow = discord.Permissions.none()
+##        deny = discord.Permissions.none()
+##        #allow.can_mention_everyone = True
+##        deny.can_embed_links = True
+##        membs = discord.utils.find(lambda m: m == client.user, message.server.members)
+##        client.set_channel_permissions(message.channel, membs, allow, deny)
 
         r=requests.get('https://osu.ppy.sh/api/get_user?k=API Key&u='+third)
         data=r.json()
         for player in data:
-            client.send_message(message.channel, 'Username : ' + player['username'] + '\n' + 'Performance Points : ' + "%.2f" % float(player['pp_raw']) + '\n' +  'Accuracy : ' + "%.2f" % float(player['accuracy']) + '\n' + 'Playcount : ' + player['playcount'] + '\n' +'Profile Link : https://osu.ppy.sh/u/'+player['user_id'])
+            client.send_message(message.channel,'https://a.ppy.sh/'+player['user_id'] + '\nUsername : ' + player['username'] + '\nPerformance Points : ' + "%.2f" % float(player['pp_raw']) +  '\nAccuracy : ' + "%.2f" % float(player['accuracy']) + '\nPlaycount : ' + player['playcount'] + '\nProfile Link : `osu.ppy.sh/u/'+player['user_id']+'`')
 
     if message.content.startswith('{} top'.format(client.user.mention())):
         my_string = message.content    
@@ -39,12 +49,19 @@ def on_message(message):
         first = splitted[0]
         second = splitted[1]
         third = splitted[2]
-
-        print(client.user)
-        print(message.author)
         
-        r=requests.get('https://osu.ppy.sh/api/get_user_best?k=API Key&u='+third+'&limit=5')
-        data=r.json()
+
+## Rework the permissions later       
+##        allow = discord.Permissions.none()
+##        deny = discord.Permissions.none()
+##        #allow.can_mention_everyone = True
+##        deny.can_embed_links = True
+##        membs = discord.utils.find(lambda m: m == client.user, message.server.members)
+##        client.set_channel_permissions(message.channel, membs, allow, deny)
+        client.send_message(message.channel, 'Parsing the requested data. I may take some time. Please be patient.\n*Dont send me any other request before current request is completed, coz I am gonna ignore it.*\n\n')
+        start_time = time.time()
+        r = requests.get('https://osu.ppy.sh/api/get_user_best?k=API Key&u='+third+'&limit=5')
+        data = r.json()
         msg = ''
         for player in data:
             thr = int(player['count300'])
@@ -54,9 +71,18 @@ def on_message(message):
             tph = int(300*thr + 100*hun + 50*fif)
             tnh = int(thr + hun + fif + miss)
             acc = float(tph / (tnh*3))
-            msg += str('Beatmap : ' + 'https://osu.ppy.sh/b/'+player['beatmap_id'] + ' | ' + 'Acc : ' + "%.2f" % float(acc) + ' | ' + 'Rank : ' + player['rank'] + ' | ' + 'PP : ' + player['pp'] + '\n')
+            
+            bitits = requests.get('https://osu.ppy.sh/b/'+player['beatmap_id'])
+            html = bs4.BeautifulSoup(bitits.text, "lxml")
+            tits = html.title.text
 
-        client.send_message(message.channel, msg)
+##            t = lxml.html.parse('https://osu.ppy.sh/b/'+player['beatmap_id'])
+##            tits = t.find(".//title").text
+
+           
+            msg += str('Beatmap : ' + tits + ' `osu.ppy.sh/b/'+player['beatmap_id'] + '`' + '\n Acc : ' + "%.2f" % float(acc) + ' | ' + 'Rank : ' + player['rank'] + ' | ' + 'PP : ' + player['pp'] + '\n')
+
+        client.send_message(message.channel, msg + '\nThis request took `'+ "%0.2s seconds`" % (time.time() - start_time)+' to process. Screw Peppy.')
         
 ## Chat Emotes--------------------------------------------------------------------------------------
     if message.content.startswith('!kappa'):
@@ -71,6 +97,17 @@ def on_message(message):
     if message.content.startswith('!lapz'):
         client.send_message(message.channel, 'http://i.imgur.com/I0Lqf3w.png')
         
+@client.event
+##def on_member_update(before, after):
+##    bf_serv = before.server
+##    af_serv = after.server
+##    bf_status = before.status
+##    af_status = after.status
+##
+##    if bf_status == 'offline' and af_status == 'online':
+##        client.send_message(af_serv, 'Wassup {0}, welcome back !'.format(after.mention()))
+
+
 @client.event
 def on_ready():
     print('Logged in as')
