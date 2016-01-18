@@ -3,47 +3,130 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
     <title>Lapzbot by lapoozza</title>
   </head>
 
   <body>
-    <div id="container">
+    <header>
       <div class="inner">
+        <h1>Lapzbot</h1>
+        <h2>lapzbot</h2>
+        <a href="https://github.com/lapoozza/lapzbot" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-        <header>
-          <h1>Lapzbot</h1>
-          <h2>lapzbot</h2>
-        </header>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h2>
+<a id="lapzbot" class="anchor" href="#lapzbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>lapzbot</h2>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/lapoozza/lapzbot/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/lapoozza/lapzbot/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/lapoozza/lapzbot" id="view-on-github" class="button"><span>View on GitHub</span></a>
+<h3>
+<a id="what-is-lapzbot" class="anchor" href="#what-is-lapzbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is lapzbot?</h3>
+
+<p>lapzbot is a multi-purpose utility bot that I wrote for my discord server <code>osu! India</code>. Needless to say the functions I have created are designed keeping the osu crowd in mind. If you want to use this bot, go ahead and use it. I will try to keep it as updated as possible.</p>
+
+<h3>
+<a id="how-to-set-it-up" class="anchor" href="#how-to-set-it-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to set it up?</h3>
+
+<ol>
+<li>Install <a href="https://www.python.org/downloads/">Python 3.5.1</a>
+
+<ul>
+<li>Make sure you select this option in the Python install: <strong>Install launchers for all user</strong> and <strong>Add Python 3.5 to PATH</strong>. After that do <strong>Install Now</strong>. (<em>Don't click on Customize installation</em>) </li>
+</ul>
+</li>
+<li>Install <a href="https://git-scm.com/download/win">Git</a>
+</li>
+<li>Install <a href="http://pyyaml.org/wiki/PyYAML">PyYAML 3.11</a> </li>
+<li>Download the <strong>async version</strong> of <a href="https://github.com/Rapptz/discord.py/tree/async">Discord.py</a>
+
+<ul>
+<li>Alternatively, open comamnd prompt and type <code>pip install git+https://github.com/Rapptz/discord.py@async</code> . P.S. This requires Python and Git to be installed first. So complete steps 1 and 2 before doing this.</li>
+</ul>
+</li>
+<li>Download the bot by clicking on <strong>Download ZIP</strong> near the top right hand side of this site</li>
+<li>Unzip the bot</li>
+<li>Goto the bot folder once you have unzipped. There are 2 folders inside :- <strong>audio_library</strong> and <strong>configuration</strong>
+
+<ul>
+<li>
+<strong>audio_library</strong> :- Place you mp3 files here</li>
+<li>
+<strong>configuration</strong> :- Inside this there is a file called <code>config.yaml</code>. Open this with a text editor. I recommend using <a href="https://notepad-plus-plus.org/download/v6.8.8.html">Notepad ++</a>. <strong>Edit the values only. Don't change anything else.</strong> Check the wiki for detailed information on how to edit the config.yaml file. Save the config.yaml file.</li>
+</ul>
+</li>
+<li>Double-click the <code>lapzbot.py</code> file. (In case that doesnt work, right click 'lapzbot.py' and open it with IDLE. Then from IDLE, press <code>F5</code> )</li>
+</ol>
+
+<h3>
+<a id="command-list" class="anchor" href="#command-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command list</h3>
+
+<ul>
+<li>
+<code>!help</code> :- Displays a list of commands that you can use.</li>
+<li>
+<code>!stats &lt;username&gt;</code> :- Displays username, PP, playcount and accuracy using the osu! API. Make sure that if your username contains more than 2 word, user underscore to separate the words. Ex :- @lapzbot stats John_Smith</li>
+<li>
+<code>!top &lt;username&gt;</code> :- Displays the top 5 plays of the user. Currently experimental. Refer to above on how to format your username.</li>
+<li>
+<code>!guess</code> :- Starts a number guessing game</li>
+</ul>
+
+<h3>
+<a id="music-player-functions" class="anchor" href="#music-player-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Music Player functions</h3>
+
+<ul>
+<li>
+<code>!load</code> :- Hooks the bot to the voice channel you are currently joines. (<em>Remember to join a voice channel first before using this command</em>). Once it hooks itself, it will display a list of mp3 files inside the <strong>audio_library</strong> folder against a code that can be used to play the file.</li>
+<li>
+<code>!play &lt;id&gt;</code> :- Play a song represented by that id. (<em>In order to play a new song, the current song must finish playing or alternatively you can use</em> <code>!stop</code>)</li>
+<li>
+<code>!pause</code> :- Pauses the current song</li>
+<li>
+<code>!resume</code> :- Resumes the current song that was paused</li>
+<li>
+<code>!stop</code> :- Stops playing the current song</li>
+</ul>
+
+<h3>
+<a id="emoticon-list" class="anchor" href="#emoticon-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Emoticon list</h3>
+
+<ul>
+<li><code>!kappa</code></li>
+<li><code>!feelsgoodman</code></li>
+<li><code>!feelsbadman</code></li>
+<li><code>!lapz</code></li>
+</ul>
         </section>
 
-        <hr>
+        <aside id="sidebar">
+          <a href="https://github.com/lapoozza/lapzbot/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/lapoozza/lapzbot/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-        <section id="main_content">
-          <h3>
-<a id="welcome-to-lapzbot-page" class="anchor" href="#welcome-to-lapzbot-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to lapzbot page.</h3>
+          <p class="repo-owner"><a href="https://github.com/lapoozza/lapzbot"></a> is maintained by <a href="https://github.com/lapoozza">lapoozza</a>.</p>
 
-<p>This bot was created for my discord server. If you wanna use it for your own server you will have to figure a way out.</p>
-        </section>
-
-        <footer>
-          Lapzbot is maintained by <a href="https://github.com/lapoozza">lapoozza</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
       </div>
     </div>
+
+  
   </body>
 </html>
