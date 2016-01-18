@@ -3,6 +3,8 @@
 ### What is lapzbot?
 lapzbot is a multi-purpose utility bot that I wrote for my discord server `osu! India`. Needless to say the functions I have created are designed keeping the osu crowd in mind. If you want to use this bot, go ahead and use it. I will try to keep it as updated as possible.
 
+Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get latest updates/ help/ bugfixes etc on lapzbot.
+
 ### How to set it up?
 1. Install [Python 3.5.1](https://www.python.org/downloads/)
     * Make sure you select this option in the Python install: **Install launchers for all user** and **Add Python 3.5 to PATH**. After that do **Install Now**. (*Don't click on Customize installation*) 
