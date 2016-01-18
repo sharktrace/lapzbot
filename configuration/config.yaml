@@ -1,0 +1,11 @@
+OSU_API:
+    KEY: Your OSU_API KEY
+
+DISCORD_LOGIN:
+    email: your bots email for DISCORD
+    password: your bots password for DISCORD
+
+CHANNELS:
+    help_channel: channel id of your servers dedicated help channel
+
+

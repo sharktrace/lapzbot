@@ -3,10 +3,18 @@ import json
 import requests
 import bs4
 import time
-from discord import opus
 import subprocess as sp
 import glob
 import random
+import yaml
+
+# Loading configurations from config.yaml
+with open('./configuration/config.yaml', 'r') as f:
+    doc = yaml.load(f)
+
+# TODO Add support for 64 bit as well
+if not discord.opus.is_loaded():
+    discord.opus.load_opus('libopus-0.x86.dll')
 
 
 class Bot(discord.Client):
@@ -21,34 +29,21 @@ class Bot(discord.Client):
         if message.author == self.user:
             return
 
-        if message.content.startswith('{} hello'.format(self.user.mention)):
+        if message.content.startswith('!help'):
+            help_channel = doc['CHANNELS']['help_channel']
             await self.send_message(message.channel,
-                                    'Hello {} , how are you doing today?'.format(message.author.mention))
+                                    'Hello {}'.format(message.author.mention)+', please visit <#' + str(help_channel) +
+                                    '> for a complete list of commands')
 
-        if message.content.startswith('{} help'.format(self.user.mention)):
-            await self.send_message(message.channel,
-                                    'Hello {}, the following commands are available:- `@lapzbot hello`, `@lapzbot help`, `@lapzbot stats <username>`, `@lapzbot top <username>`, `wtf`'.format(
-                                            message.author.mention) + '\n The following emoticons are supported :- `!kappa`,`!feelsbadman` ,`!feelsgoodman`, `!lapz`')
-
-        if message.content.startswith('{} wtf'.format(self.user.mention)):
-            await self.send_message(message.channel, 'WTF!!! {}'.format(message.author.mention))
-
-        if message.content.startswith('{} who are you'.format(self.user.mention)):
-            await self.send_message(message.channel,
-                                    'Hello {}, I am utility bot created by Lapoozza. Feel free to talk to me in case you are bored. I can also perform a range of functions. Use`@lapzbot help` to access my comamnds list.'.format(
-                                            message.author.mention))
-
-        # Music Player codes------------------------------------------------------------------------------------
+        # Music Player codes---------------
         if message.content.startswith('!load'.format(self.user.mention)):
             await self.send_message(message.channel, 'Hooked to the voice channel. Please wait while'
                                                      ' I populate the list of songs.')
 
-            opus.load_opus('libopus-0.x86.dll')
             global player
             global voice_stream
-            global file_name
 
-            if self.is_voice_connected() == True:
+            if self.is_voice_connected():
                 await self.send_message(message.channel,
                                         '```Discord API doesnt let me join multiple servers at the moment.```')
 
@@ -121,8 +116,8 @@ class Bot(discord.Client):
 
                     self.player.start()
 
-                # else:
-                #     await self.send_message(message.channel, '```Please connect to voice channel first```')
+                    # else:
+                    #     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
             except Exception as e:
                 await self.send_message(message.channel,
@@ -131,7 +126,7 @@ class Bot(discord.Client):
         if message.content.startswith('!pause'):
 
             try:
-                if self.is_voice_connected() == False:
+                if not self.is_voice_connected():
                     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
                 if player.is_playing() == True and player.is_done() == False:
@@ -140,7 +135,7 @@ class Bot(discord.Client):
                     now_playing = discord.Game(name='Paused')
                     await self.change_status(game=now_playing, idle=False)
 
-                    player.pause()
+                    self.player.pause()
 
             except Exception as e:
                 await self.send_message(message.channel,
@@ -149,7 +144,7 @@ class Bot(discord.Client):
         if message.content.startswith('!resume'):
 
             try:
-                if self.is_voice_connected() == False:
+                if not self.is_voice_connected():
                     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
                 elif player.is_playing() == True and player.is_done() == False:
@@ -158,7 +153,7 @@ class Bot(discord.Client):
                     now_playing = discord.Game(name='Paused')
                     await self.change_status(game=now_playing, idle=False)
 
-                    player.resume()
+                    self.player.resume()
 
             except Exception as e:
                 await self.send_message(message.channel,
@@ -167,23 +162,22 @@ class Bot(discord.Client):
         if message.content.startswith('!stop'):
 
             try:
-                if self.is_voice_connected() == False:
+                if not self.is_voice_connected():
                     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
                 elif self.player.is_playing() == True and self.player.is_done() == False:
-                    await self.send_message(message.channel, 'Paused')
+                    await self.send_message(message.channel, 'stopped')
 
                     now_playing = discord.Game(name='')
                     await self.change_status(game=now_playing, idle=False)
 
-                    player.stop()
+                    self.player.stop()
 
             except Exception as e:
                 await self.send_message(message.channel,
                                         '```' + str(e) + '```')
 
-# Yes/No API Codes---------
-
+        # Yes/No API Codes---------
         if message.content.startswith('{} '.format(self.user.mention)):
             x = message.content
             if x.startswith('<@134962024324136960> is') or x.startswith('<@134962024324136960> are') or x.startswith(
@@ -198,9 +192,16 @@ class Bot(discord.Client):
                     '<@134962024324136960> where'):
                 print(x)
                 await self.send_message(message.channel,
-                                        'Oww, my creator has instructed me not to answer that question. Next question please...')
+                                        'Oww, my creator has instructed me not to answer that question.' +
+                                        ' Next question please...')
 
+        # GUESSING GAME CODES---------
         if message.content.startswith('!guess'):
+
+            # Game Status updating
+            now_playing = discord.Game(name='Guessing Game')
+            await self.change_status(game=now_playing, idle=False)
+
             await self.send_message(message.channel, 'Guess a number between 1 to 10')
 
             def guess_check(m):
@@ -217,16 +218,20 @@ class Bot(discord.Client):
             else:
                 await self.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
 
+            # Game Status updating
+            now_playing = discord.Game(name='')
+            await self.change_status(game=now_playing, idle=False)
+
+        # OSU! API FUNCTIONS--------------------
         # TODO implement other osu!API Functions
-        if message.content.startswith('{} stats'.format(self.user.mention)):
+        if message.content.startswith('!stats'):
             my_string = message.content
             splitted = my_string.split()
-            third = splitted[2]
-            # first = splitted[0]
-            # second = splitted[1]
+            third = splitted[1]
 
-
-            r = requests.get('https://osu.ppy.sh/api/get_user?k=API KEY&u=' + third)
+            # key loaded from config.yaml
+            key = doc['OSU_API']['KEY']
+            r = requests.get('https://osu.ppy.sh/api/get_user?k=' + key + '&u=' + third)
             data = r.json()
             for player in data:
                 await self.send_message(message.channel,
@@ -236,18 +241,20 @@ class Bot(discord.Client):
                                                 player['accuracy']) + '\nPlaycount : ' + player[
                                             'playcount'] + '\nProfile Link : `osu.ppy.sh/u/' + player['user_id'] + '`')
 
-        if message.content.startswith('{} top'.format(self.user.mention)):
+        if message.content.startswith('!top'):
             my_string = message.content
             splitted = my_string.split()
-            # first = splitted[0]
-            # second = splitted[1]
-            third = splitted[2]
+            third = splitted[1]
 
             await self.send_message(message.channel,
-                                    'Parsing the requested data. I may take some time. Please be patient.\n*Dont send me any other request before current request is completed, coz I am gonna ignore it.*\n\n')
+                                    'Fetching the requested data. Please wait...\n\n')
             start_time = time.time()
-            r = requests.get(
-                    'https://osu.ppy.sh/api/get_user_best?k=API KEY&u=' + third + '&limit=5')
+
+            # key loaded from config.yaml
+            key = doc['OSU_API']['KEY']
+
+            r = requests.get('https://osu.ppy.sh/api/get_user_best?k=' + key + '&u=' + third + '&limit=5')
+
             data = r.json()
             msg = ''
             for player in data:
@@ -259,6 +266,7 @@ class Bot(discord.Client):
                 tnh = int(thr + hun + fif + miss)
                 acc = float(tph / (tnh * 3))
 
+                # TODO work on parsing with LXML
                 bitits = requests.get('https://osu.ppy.sh/b/' + player['beatmap_id'])
                 html = bs4.BeautifulSoup(bitits.text, "lxml")
                 tits = html.title.text
@@ -298,7 +306,12 @@ class Bot(discord.Client):
         print(self.user.name)
         print(self.user.id)
         print('------')
+        # Game Status updating
+        now_playing = discord.Game(name='type !help for help')
+        await self.change_status(game=now_playing, idle=False)
 
-
+# email id and password loaded from config.yaml
+emaild = doc['DISCORD_LOGIN']['email']
+passwordd = doc['DISCORD_LOGIN']['password']
 bot = Bot()
-bot.run('discord_username', 'discord_password')
+bot.run(emaild, passwordd)
