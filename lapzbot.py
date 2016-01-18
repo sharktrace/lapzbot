@@ -52,9 +52,11 @@ class Bot(discord.Client):
 
             # TODO get a better way to store local playlist
             try:
+                global ids  # The sole purpose for this is to be used with !playlist
                 ids = 0
                 global s_dict
                 s_list = []
+                s_playlist = []
                 a = glob.glob('./audio_library/*.mp3')
                 for a in a:
                     try:
@@ -71,15 +73,22 @@ class Bot(discord.Client):
                         artist = op_json['format']['tags']['artist']
                         await self.send_message(message.channel,
                                                 title + ' - ' + artist + ' (code: **' + str(ids) + '**)')
+                        s_playlist.append(ids)
+                        s_playlist.append(title + ' - ' + artist)
 
                     except Exception as e:
                         print(str(e))
             except:
                 await self.send_message(message.channel,
-                                        '```No songs in the directory lol.```')
+                                        '```No songs in the directory.```')
+
+            s_playlist_dict = dict(s_playlist[i:i + 2] for i in range(0, len(s_playlist), 2))
+            with open('./configuration/playListInfo.yaml', 'w') as f2:
+                yaml.dump(s_playlist_dict, f2, default_flow_style=False)
+
+            del s_playlist  # Deleting this variable cause already the data is dumped to playListInfo.yaml
 
             s_dict = dict(s_list[i:i + 2] for i in range(0, len(s_list), 2))
-            print(s_dict[1])
 
         if message.content.startswith('!play '):
 
@@ -115,9 +124,6 @@ class Bot(discord.Client):
                     await self.change_status(game=now_playing, idle=False)
 
                     self.player.start()
-
-                    # else:
-                    #     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
             except Exception as e:
                 await self.send_message(message.channel,
@@ -177,6 +183,25 @@ class Bot(discord.Client):
                 await self.send_message(message.channel,
                                         '```' + str(e) + '```')
 
+        if message.content.startswith('!playlist'):
+
+            try:
+                # Loading configurations from config.yaml
+                with open('./configuration/playListInfo.yaml', 'r') as f3:
+                    plist = yaml.load(f3)
+                idq = 1
+                plistfinal = ''
+                while idq <= ids:
+                    song = plist[idq]
+                    plistfinal += str(song + ' (code: **' + str(idq) + '**)\n')
+                    idq += 1
+
+                await self.send_message(message.channel, plistfinal)
+
+            except Exception as e:
+                await self.send_message(message.channel,
+                                        '```' + str(e) + '```')
+
         # Yes/No API Codes---------
         if message.content.startswith('{} '.format(self.user.mention)):
             x = message.content
@@ -217,6 +242,34 @@ class Bot(discord.Client):
                 await self.send_message(message.channel, 'You are right!')
             else:
                 await self.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
+
+            # Game Status updating
+            now_playing = discord.Game(name='')
+            await self.change_status(game=now_playing, idle=False)
+
+        # Trivia Quiz game codes-----------------
+        if message.content.startswith('!quiz'):
+            # Game Status updating
+            now_playing = discord.Game(name='Trivia Quiz')
+            await self.change_status(game=now_playing, idle=False)
+
+            r = requests.get('http://jservice.io/api/random?')
+            data = r.json()
+
+            for player in data:
+                await self.send_message(message.channel, player['question'])
+
+                guess = await self.wait_for_message(timeout=10.0, author=message.author)
+                guess_l = str(guess).lower()
+                answer = str(player['answer']).lower()
+                if guess_l is None:
+                    fmt = 'Sorry, you took too long. It was {}.'
+                    await self.send_message(message.channel, fmt.format(answer))
+                    return
+                if guess_l == answer:
+                    await self.send_message(message.channel, 'You are right!')
+                else:
+                    await self.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
 
             # Game Status updating
             now_playing = discord.Game(name='')
@@ -268,7 +321,7 @@ class Bot(discord.Client):
 
                 # TODO work on parsing with LXML
                 bitits = requests.get('https://osu.ppy.sh/b/' + player['beatmap_id'])
-                html = bs4.BeautifulSoup(bitits.text, "lxml")
+                html = bs4.BeautifulSoup(bitits.text, 'lxml')
                 tits = html.title.text
 
                 msg += str(
