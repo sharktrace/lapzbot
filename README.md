@@ -21,7 +21,7 @@ Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get
 
 ### Command list
 * `!help` :- Displays a list of commands that you can use.
-* `!stats <username>` :- Displays username, PP, playcount and accuracy using the osu! API. Make sure that if your username contains more than 2 word, user underscore to separate the words. Ex :- @lapzbot stats John_Smith
+* `!stats <username>` :- Displays username, PP, playcount and accuracy using the osu! API. Make sure that if your username contains more than 2 word, user underscore to separate the words. Ex :- `!stats John_Smith`
 * `!top <username>` :- Displays the top 5 plays of the user. Currently experimental. Refer to above on how to format your username.
 * `!guess` :- Starts a number guessing game
 * `!quiz` :- Asks a random question
