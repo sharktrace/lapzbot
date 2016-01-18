@@ -40,7 +40,7 @@ class Bot(discord.Client):
             await self.send_message(message.channel, 'Hooked to the voice channel. Please wait while'
                                                      ' I populate the list of songs.')
 
-            global player
+            global player, s_playlist
             global voice_stream
 
             if self.is_voice_connected():
@@ -55,6 +55,7 @@ class Bot(discord.Client):
                 global ids  # The sole purpose for this is to be used with !playlist
                 ids = 0
                 global s_dict
+                global s_list
                 s_list = []
                 s_playlist = []
                 a = glob.glob('./audio_library/*.mp3')
@@ -229,8 +230,8 @@ class Bot(discord.Client):
 
             await self.send_message(message.channel, 'Guess a number between 1 to 10')
 
-            def guess_check(m):
-                return m.content.isdigit()
+            def guess_check(m1):
+                return m1.content.isdigit()
 
             guess = await self.wait_for_message(timeout=5.0, author=message.author, check=guess_check)
             answer = random.randint(1, 10)
@@ -248,6 +249,7 @@ class Bot(discord.Client):
             await self.change_status(game=now_playing, idle=False)
 
         # Trivia Quiz game codes-----------------
+        # TODO the strings are not compared correctly. Need to fix.
         if message.content.startswith('!quiz'):
             # Game Status updating
             now_playing = discord.Game(name='Trivia Quiz')
@@ -262,11 +264,13 @@ class Bot(discord.Client):
                 guess = await self.wait_for_message(timeout=10.0, author=message.author)
                 guess_l = str(guess).lower()
                 answer = str(player['answer']).lower()
+                set1 = set(guess_l.split(' '))
+                set2 = set(answer.split(' '))
                 if guess_l is None:
                     fmt = 'Sorry, you took too long. It was {}.'
                     await self.send_message(message.channel, fmt.format(answer))
                     return
-                if guess_l == answer:
+                if set1 == set2:
                     await self.send_message(message.channel, 'You are right!')
                 else:
                     await self.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
@@ -330,7 +334,7 @@ class Bot(discord.Client):
                                 acc) + ' | ' + 'Rank : ' + player['rank'] + ' | ' + 'PP : ' + player['pp'] + '\n')
 
             await self.send_message(message.channel, msg + '\nThis request took `' + "%.2f" % (
-                time.time() - start_time) + ' seconds` to process. Screw Peppy.')
+                time.time() - start_time) + ' seconds` to process.')
 
         # TODO get more Chat Emotes
         if message.content.startswith('!kappa'):
