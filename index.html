@@ -3,38 +3,42 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
     <title>Lapzbot by lapoozza</title>
   </head>
 
   <body>
-    <header>
+    <div id="container">
       <div class="inner">
-        <h1>Lapzbot</h1>
-        <h2>lapzbot</h2>
-        <a href="https://github.com/lapoozza/lapzbot" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h2>
-<a id="lapzbot" class="anchor" href="#lapzbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>lapzbot</h2>
+        <header>
+          <h1>Lapzbot</h1>
+          <h2>lapzbot</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/lapoozza/lapzbot/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/lapoozza/lapzbot/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/lapoozza/lapzbot" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <p><img src="http://i.imgur.com/Y86fweN.png" alt="lapzbot"></p>
 
 <h3>
 <a id="what-is-lapzbot" class="anchor" href="#what-is-lapzbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is lapzbot?</h3>
 
 <p>lapzbot is a multi-purpose utility bot that I wrote for my discord server <code>osu! India</code>. Needless to say the functions I have created are designed keeping the osu crowd in mind. If you want to use this bot, go ahead and use it. I will try to keep it as updated as possible.</p>
+
+<p>Join my <a href="https://discord.gg/0lzW6jSQESAO1HSU">lapzbothelp Discord Server</a> to get latest updates/ help/ bugfixes etc on lapzbot.</p>
 
 <h3>
 <a id="how-to-set-it-up" class="anchor" href="#how-to-set-it-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to set it up?</h3>
@@ -61,9 +65,9 @@
 
 <ul>
 <li>
-<strong>audio_library</strong> :- Place you mp3 files here</li>
+<strong>audio_library</strong> :- Place you mp3 files here. (Try not to put a huge amounts of songs inside this as currently it processes all the songs while loading to voice channel.)</li>
 <li>
-<strong>configuration</strong> :- Inside this there is a file called <code>config.yaml</code>. Open this with a text editor. I recommend using <a href="https://notepad-plus-plus.org/download/v6.8.8.html">Notepad ++</a>. <strong>Edit the values only. Don't change anything else.</strong> Check the wiki for detailed information on how to edit the config.yaml file. Save the config.yaml file.</li>
+<strong>configuration</strong> :- Inside this there is a file called <code>config.yaml</code>. Open this with a text editor. I recommend using <a href="https://notepad-plus-plus.org/download/v6.8.8.html">Notepad ++</a>. <strong>Edit the values only. Don't change anything else.</strong> <a href="https://github.com/lapoozza/lapzbot/wiki">Check the wiki</a> for detailed information on how to edit the config.yaml file. Save the config.yaml file.</li>
 </ul>
 </li>
 <li>Double-click the <code>lapzbot.py</code> file. (In case that doesnt work, right click 'lapzbot.py' and open it with IDLE. Then from IDLE, press <code>F5</code> )</li>
@@ -81,6 +85,8 @@
 <code>!top &lt;username&gt;</code> :- Displays the top 5 plays of the user. Currently experimental. Refer to above on how to format your username.</li>
 <li>
 <code>!guess</code> :- Starts a number guessing game</li>
+<li>
+<code>!quiz</code> :- Asks a random question</li>
 </ul>
 
 <h3>
@@ -97,6 +103,8 @@
 <code>!resume</code> :- Resumes the current song that was paused</li>
 <li>
 <code>!stop</code> :- Stops playing the current song</li>
+<li>
+<code>!playlist</code> :- Displays the playlist.</li>
 </ul>
 
 <h3>
@@ -110,23 +118,13 @@
 </ul>
         </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/lapoozza/lapzbot/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/lapoozza/lapzbot/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+        <footer>
+          Lapzbot is maintained by <a href="https://github.com/lapoozza">lapoozza</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
-          <p class="repo-owner"><a href="https://github.com/lapoozza/lapzbot"></a> is maintained by <a href="https://github.com/lapoozza">lapoozza</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
+        
       </div>
     </div>
-
-  
   </body>
 </html>
