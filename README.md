@@ -16,7 +16,8 @@ Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get
 7. Goto the bot folder once you have unzipped. There are 2 folders inside :- **audio_library** and **configuration**
     * **audio_library** :- Place you mp3 files here. (Try not to put a huge amounts of songs inside this as currently it processes all the songs while loading to voice channel.)
     * **configuration** :- Inside this there is a file called `config.yaml`. Open this with a text editor. I recommend using [Notepad ++](https://notepad-plus-plus.org/download/v6.8.8.html). **Edit the values only. Don't change anything else.** [Check the wiki](https://github.com/lapoozza/lapzbot/wiki) for detailed information on how to edit the config.yaml file. Save the config.yaml file.
-8. Double-click the `lapzbot.py` file. (In case that doesnt work, right click 'lapzbot.py' and open it with IDLE. Then from IDLE, press `F5` )
+8. You will have to set the PATH for ffmpeg library. (To know how to do this, read the wiki)
+9. Double click on `runbot.bat` file to launch the bot. (In case that doesnt work, right click 'lapzbot.py' and open it with IDLE. Then from IDLE, press `F5` )
 
 
 ### Command list
