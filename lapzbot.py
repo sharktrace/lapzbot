@@ -325,7 +325,7 @@ class Bot(discord.Client):
 
                 # TODO work on parsing with LXML
                 bitits = requests.get('https://osu.ppy.sh/b/' + player['beatmap_id'])
-                html = bs4.BeautifulSoup(bitits.text, 'lxml')
+                html = bs4.BeautifulSoup(bitits.text, 'html.parser')
                 tits = html.title.text
 
                 msg += str(
