@@ -5,20 +5,7 @@ lapzbot is a multi-purpose utility bot that I wrote for my discord server `osu! 
 Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get latest updates/ help/ bugfixes etc on lapzbot.
 
 ### How to set it up?
-1. Install [Python 3.5.1](https://www.python.org/downloads/)
-    * Make sure you select this option in the Python install: **Install launchers for all user** and **Add Python 3.5 to PATH**. After that do **Install Now**. (*Don't click on Customize installation*) 
-2. Install [Git](https://git-scm.com/download/win)
-3. Install [PyYAML 3.11](http://pyyaml.org/wiki/PyYAML) 
-4. Download the **async version** of [Discord.py](https://github.com/Rapptz/discord.py/tree/async)
-    * Alternatively, open comamnd prompt and type `pip install git+https://github.com/Rapptz/discord.py@async` . P.S. This requires Python and Git to be installed first. So complete steps 1 and 2 before doing this.
-5. Download the bot by clicking on **Download ZIP** near the top right hand side of this site
-6. Unzip the bot
-7. Goto the bot folder once you have unzipped. There are 2 folders inside :- **audio_library** and **configuration**
-    * **audio_library** :- Place you mp3 files here. (Try not to put a huge amounts of songs inside this as currently it processes all the songs while loading to voice channel.)
-    * **configuration** :- Inside this there is a file called `config.yaml`. Open this with a text editor. I recommend using [Notepad ++](https://notepad-plus-plus.org/download/v6.8.8.html). **Edit the values only. Don't change anything else.** [Check the wiki](https://github.com/lapoozza/lapzbot/wiki) for detailed information on how to edit the config.yaml file. Save the config.yaml file.
-8. You will have to set the PATH for ffmpeg library. (To know how to do this, read the wiki)
-9. Double click on `runbot.bat` file to launch the bot. (In case that doesnt work, right click 'lapzbot.py' and open it with IDLE. Then from IDLE, press `F5` )
-
+Refer to this wiki page :- [How to setup the bot?](https://github.com/lapoozza/lapzbot/wiki/How-to-setup-the-bot%3F)
 
 ### Command list
 * `!help` :- Displays a list of commands that you can use.
