@@ -1,6 +1,7 @@
 @echo off
-TITLE = lapzbot v1.0.0
+TITLE = lapzbot
 cls
+CD bot
 cmd /k py -3 lapzbot.py
 
 

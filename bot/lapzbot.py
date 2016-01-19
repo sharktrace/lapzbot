@@ -9,12 +9,12 @@ import random
 import yaml
 
 # Loading configurations from config.yaml
-with open('./configuration/config.yaml', 'r') as f:
+with open('../configuration/config.yaml', 'r') as f:
     doc = yaml.load(f)
 
 # TODO Add support for 64 bit as well
 if not discord.opus.is_loaded():
-    discord.opus.load_opus('./library/libopus/libopus-0.x86.dll')
+    discord.opus.load_opus('../library/libopus/libopus-0.x86.dll')
 
 
 class Bot(discord.Client):
@@ -58,7 +58,7 @@ class Bot(discord.Client):
                 global s_list
                 s_list = []
                 s_playlist = []
-                a = glob.glob('./audio_library/*.mp3')
+                a = glob.glob('../audio_library/*.mp3')
                 for a in a:
                     try:
                         b = a.replace('\\', '/')
@@ -84,7 +84,7 @@ class Bot(discord.Client):
                                         '``' + str(e) + '```')
 
             s_playlist_dict = dict(s_playlist[i:i + 2] for i in range(0, len(s_playlist), 2))
-            with open('./configuration/playListInfo.yaml', 'w') as f2:
+            with open('../configuration/playListInfo.yaml', 'w') as f2:
                 yaml.dump(s_playlist_dict, f2, default_flow_style=False)
 
             del s_playlist  # Deleting this variable cause already the data is dumped to playListInfo.yaml
@@ -136,7 +136,7 @@ class Bot(discord.Client):
                 if not self.is_voice_connected():
                     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
-                if player.is_playing() == True and player.is_done() == False:
+                if self.player.is_playing() == True and self.player.is_done() == False:
                     await self.send_message(message.channel, 'Paused')
 
                     now_playing = discord.Game(name='Paused')
@@ -154,7 +154,7 @@ class Bot(discord.Client):
                 if not self.is_voice_connected():
                     await self.send_message(message.channel, '```Please connect to voice channel first```')
 
-                elif player.is_playing() == True and player.is_done() == False:
+                elif self.player.is_playing() == False and self.player.is_done() == False:
                     await self.send_message(message.channel, 'Paused')
 
                     now_playing = discord.Game(name='Paused')
@@ -188,7 +188,7 @@ class Bot(discord.Client):
 
             try:
                 # Loading configurations from config.yaml
-                with open('./configuration/playListInfo.yaml', 'r') as f3:
+                with open('../configuration/playListInfo.yaml', 'r') as f3:
                     plist = yaml.load(f3)
                 idq = 1
                 plistfinal = ''
