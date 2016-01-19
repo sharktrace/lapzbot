@@ -14,7 +14,7 @@ with open('./configuration/config.yaml', 'r') as f:
 
 # TODO Add support for 64 bit as well
 if not discord.opus.is_loaded():
-    discord.opus.load_opus('libopus-0.x86.dll')
+    discord.opus.load_opus('./library/libopus/libopus-0.x86.dll')
 
 
 class Bot(discord.Client):
@@ -79,9 +79,9 @@ class Bot(discord.Client):
 
                     except Exception as e:
                         print(str(e))
-            except:
+            except FileExistsError as e:
                 await self.send_message(message.channel,
-                                        '```No songs in the directory.```')
+                                        '``' + str(e) + '```')
 
             s_playlist_dict = dict(s_playlist[i:i + 2] for i in range(0, len(s_playlist), 2))
             with open('./configuration/playListInfo.yaml', 'w') as f2:
