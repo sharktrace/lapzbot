@@ -1,4 +1,4 @@
-![lapzbot](http://i.imgur.com/Y86fweN.png)
+![lapzbot](http://i.imgur.com/txlWePx.png)
 ### What is lapzbot?
 lapzbot is a multi-purpose utility bot that I wrote for my discord server `osu! India`. Needless to say the functions I have created are designed keeping the osu crowd in mind. If you want to use this bot, go ahead and use it. I will try to keep it as updated as possible.
 
