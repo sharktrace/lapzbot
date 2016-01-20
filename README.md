@@ -7,8 +7,8 @@ Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get
 ### How to set it up?
 Refer to this wiki page :- [How to setup the bot?](https://github.com/lapoozza/lapzbot/wiki/How-to-setup-the-bot%3F)
 
-### Functions and Command
+### Functions and Commands
 Refer to this wiki page :- [Functions and commands](https://github.com/lapoozza/lapzbot/wiki/Functions-and-commands)
 
 ### Special thanks
-* Rapptz for the awesome [discord.py library](https://github.com/Rapptz/discord.py)
+Rapptz for the awesome [discord.py library](https://github.com/Rapptz/discord.py)
