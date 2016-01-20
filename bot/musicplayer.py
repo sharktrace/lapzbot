@@ -62,7 +62,8 @@ async def load(self, message):
 async def play(self, message):
     try:
         if self.player is not None and self.player.is_playing():
-            await self.send_message(message.channel, 'Already playing a song')
+            await self.send_message(message.channel, '```Already playing a song. Please wait for current' +
+                                    ' song to finish or use stop.```')
             return
         else:
             my_string = message.content
