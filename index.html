@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Lapzbot by lapoozza</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Lapzbot</h1>
-      <h2 class="project-tagline">lapzbot</h2>
-      <a href="https://github.com/lapoozza/lapzbot" class="btn">View on GitHub</a>
-      <a href="https://github.com/lapoozza/lapzbot/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/lapoozza/lapzbot/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <section class="main-content">
-      <p><img src="http://i.imgur.com/Y86fweN.png" alt="lapzbot"></p>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Lapzbot by lapoozza</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Lapzbot</h1>
+        <h2>A multipurpose bot for Discord</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/lapoozza/lapzbot/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/lapoozza/lapzbot/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/lapoozza/lapzbot" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p><img src="http://i.imgur.com/Y86fweN.png" alt="lapzbot"></p>
 
 <h3>
 <a id="what-is-lapzbot" class="anchor" href="#what-is-lapzbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is lapzbot?</h3>
@@ -31,90 +40,23 @@
 <h3>
 <a id="how-to-set-it-up" class="anchor" href="#how-to-set-it-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to set it up?</h3>
 
-<ol>
-<li>Install <a href="https://www.python.org/downloads/">Python 3.5.1</a>
-
-<ul>
-<li>Make sure you select this option in the Python install: <strong>Install launchers for all user</strong> and <strong>Add Python 3.5 to PATH</strong>. After that do <strong>Install Now</strong>. (<em>Don't click on Customize installation</em>) </li>
-</ul>
-</li>
-<li>Install <a href="https://git-scm.com/download/win">Git</a>
-</li>
-<li>Install <a href="http://pyyaml.org/wiki/PyYAML">PyYAML 3.11</a> </li>
-<li>Download the <strong>async version</strong> of <a href="https://github.com/Rapptz/discord.py/tree/async">Discord.py</a>
-
-<ul>
-<li>Alternatively, open comamnd prompt and type <code>pip install git+https://github.com/Rapptz/discord.py@async</code> . P.S. This requires Python and Git to be installed first. So complete steps 1 and 2 before doing this.</li>
-</ul>
-</li>
-<li>Download the bot by clicking on <strong>Download ZIP</strong> near the top right hand side of this site</li>
-<li>Unzip the bot</li>
-<li>Goto the bot folder once you have unzipped. There are 2 folders inside :- <strong>audio_library</strong> and <strong>configuration</strong>
-
-<ul>
-<li>
-<strong>audio_library</strong> :- Place you mp3 files here. (Try not to put a huge amounts of songs inside this as currently it processes all the songs while loading to voice channel.)</li>
-<li>
-<strong>configuration</strong> :- Inside this there is a file called <code>config.yaml</code>. Open this with a text editor. I recommend using <a href="https://notepad-plus-plus.org/download/v6.8.8.html">Notepad ++</a>. <strong>Edit the values only. Don't change anything else.</strong> <a href="https://github.com/lapoozza/lapzbot/wiki">Check the wiki</a> for detailed information on how to edit the config.yaml file. Save the config.yaml file.</li>
-</ul>
-</li>
-<li>You will have to set the PATH for ffmpeg library. (To know how to do this, read the wiki)</li>
-<li>Double click on <code>runbot.bat</code> file to launch the bot. (In case that doesnt work, right click 'lapzbot.py' and open it with IDLE. Then from IDLE, press <code>F5</code> )</li>
-</ol>
+<p>Refer to this wiki page :- <a href="https://github.com/lapoozza/lapzbot/wiki/How-to-setup-the-bot%3F">How to setup the bot?</a></p>
 
 <h3>
-<a id="command-list" class="anchor" href="#command-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command list</h3>
+<a id="functions-and-commands" class="anchor" href="#functions-and-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Functions and Commands</h3>
+
+<p>Refer to this wiki page :- <a href="https://github.com/lapoozza/lapzbot/wiki/Functions-and-commands">Functions and commands</a></p>
+
+<h3>
+<a id="special-thanks" class="anchor" href="#special-thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Special thanks</h3>
 
 <ul>
-<li>
-<code>!help</code> :- Displays a list of commands that you can use.</li>
-<li>
-<code>!stats &lt;username&gt;</code> :- Displays username, PP, playcount and accuracy using the osu! API. Make sure that if your username contains more than 2 word, user underscore to separate the words. Ex :- <code>!stats John_Smith</code>
+<li>Rapptz for the awesome <a href="https://github.com/Rapptz/discord.py">discord.py library</a>
 </li>
-<li>
-<code>!top &lt;username&gt;</code> :- Displays the top 5 plays of the user. Currently experimental. Refer to above on how to format your username.</li>
-<li>
-<code>!guess</code> :- Starts a number guessing game</li>
-<li>
-<code>!quiz</code> :- Asks a random question</li>
 </ul>
+      </section>
+    </div>
 
-<h3>
-<a id="music-player-functions" class="anchor" href="#music-player-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Music Player functions</h3>
-
-<ul>
-<li>
-<code>!load</code> :- Hooks the bot to the voice channel you are currently joines. (<em>Remember to join a voice channel first before using this command</em>). Once it hooks itself, it will display a list of mp3 files inside the <strong>audio_library</strong> folder against a code that can be used to play the file.</li>
-<li>
-<code>!play &lt;id&gt;</code> :- Play a song represented by that id. (<em>In order to play a new song, the current song must finish playing or alternatively you can use</em> <code>!stop</code>)</li>
-<li>
-<code>!pause</code> :- Pauses the current song</li>
-<li>
-<code>!resume</code> :- Resumes the current song that was paused</li>
-<li>
-<code>!stop</code> :- Stops playing the current song</li>
-<li>
-<code>!playlist</code> :- Displays the playlist.</li>
-</ul>
-
-<h3>
-<a id="emoticon-list" class="anchor" href="#emoticon-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>Emoticon list</h3>
-
-<ul>
-<li><code>!kappa</code></li>
-<li><code>!feelsgoodman</code></li>
-<li><code>!feelsbadman</code></li>
-<li><code>!lapz</code></li>
-</ul>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/lapoozza/lapzbot">Lapzbot</a> is maintained by <a href="https://github.com/lapoozza">lapoozza</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
+    
   </body>
 </html>
