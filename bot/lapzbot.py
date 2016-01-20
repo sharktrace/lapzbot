@@ -15,8 +15,7 @@ with open('../configuration/config.yaml', 'r') as f:
 if not discord.opus.is_loaded():
     discord.opus.load_opus('../library/libopus/libopus-0.x86.dll')
 
-# TODO Get a better way to load prefixes from YAML config file
-prefix = '!'
+prefix = doc['BOT']['command_prefix']
 
 
 class Bot(discord.Client):
@@ -34,7 +33,7 @@ class Bot(discord.Client):
         if message.content.startswith(prefix+'help'):
             help_channel = doc['CHANNELS']['help_channel']
             await self.send_message(message.channel,
-                                    'Hello {}'.format(message.author.mention)+', please visit <#' + str(help_channel) +
+                                    'Hello {}'.format(message.author.mention)+', please visit <#' + help_channel +
                                     '> for a complete list of commands')
 
         # CHAT EMOTES
