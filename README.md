@@ -4,6 +4,8 @@ lapzbot is a multi-purpose utility bot that I wrote for my discord server `osu! 
 
 Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get latest updates/ help/ bugfixes etc on lapzbot.
 
+P.S. This is the `master branch` and ideally you should be downloading the zip from this branch only. But if you want a version of lapzbot without the ffmpeg library files (ffmpeg.exe, ffplay.exe & ffprobe.exe) included, then you can go here : https://github.com/lapoozza/lapzbot/tree/without-ffmpeg-library
+
 ### How to set it up?
 Refer to this wiki page :- [How to setup the bot?](https://github.com/lapoozza/lapzbot/wiki/How-to-setup-the-bot%3F)
 
