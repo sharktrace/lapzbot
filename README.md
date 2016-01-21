@@ -12,7 +12,3 @@ Join my [lapzbothelp Discord Server](https://discord.gg/0lzW6jSQESAO1HSU) to get
 
 ### Special thanks
 * Rapptz for the awesome [discord.py library](https://github.com/Rapptz/discord.py)
-
-
-
-*P.S. This is the `master branch` and ideally you should be downloading the zip from this branch only. But if you want a version of lapzbot without the ffmpeg library files (ffmpeg.exe, ffplay.exe & ffprobe.exe) included, then you can go here : https://github.com/lapoozza/lapzbot/tree/without-ffmpeg-library*
