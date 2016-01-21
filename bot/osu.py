@@ -4,9 +4,14 @@ import yaml
 import time
 import bs4
 
-# Loading configurations from config.yaml
-with open('../configuration/config.yaml', 'r') as f:
-    doc = yaml.load(f)
+try:
+    # Loading configurations from config.yaml
+    with open('../configuration/config.yaml', 'r') as f:
+        doc = yaml.load(f)
+except FileNotFoundError:
+    print('The config.yaml file was not found inside the configuration folder.' +
+          '\n Make sure the file is present and run the bot again.')
+    quit()
 
 
 def stats(instring):
@@ -25,6 +30,7 @@ def stats(instring):
                      + '\nProfile Link : `osu.ppy.sh/u/' + player['user_id'] + '`')
             result = op
         return result
+        # NOTE:- if the result is 'string indices must be integers' that means the API key is wrong
     except Exception as e:
         return str(e)
 
@@ -61,5 +67,6 @@ def top(instring):
             time.time() - start_time) + ' seconds` to process.')
 
         return result
+        # NOTE:- if the result is 'string indices must be integers' that means the API key is wrong
     except Exception as e:
         return str(e)
