@@ -1,4 +1,5 @@
 *.pyc
 *.log
+*.mp3
 config.yaml
 playListInfo.yaml
