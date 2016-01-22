@@ -6,6 +6,7 @@ import triviagame
 import musicplayer
 import chatemotes
 import eightball
+import platform
 
 try:
     # Loading configurations from config.yaml
@@ -22,9 +23,11 @@ if prefix is None:
     quit()
 
 try:
-    # TODO Add support for 64 bit as well
-    if not discord.opus.is_loaded():
-        discord.opus.load_opus('../library/libopus/libopus-0.x86.dll')
+    if platform.architecture()[0] == '32bit':
+        if not discord.opus.is_loaded():
+            discord.opus.load_opus('../library/libopus/libopus-0.x86.dll')
+    elif platform.architecture()[0] == '64bit':
+            discord.opus.load_opus('../library/libopus/libopus-0.x64.dll')
 except FileNotFoundError:
     print('The opus library file could not be found.' +
           '\nMake sure the file is present and run the bot again.')
