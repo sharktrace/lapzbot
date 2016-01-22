@@ -10,8 +10,6 @@ async def load(self, message):
 
     global s_playlist
     global voice_stream
-    global queue
-    queue = []
 
     if self.is_voice_connected():
         await self.send_message(message.channel,
@@ -64,9 +62,8 @@ async def load(self, message):
 async def play(self, message):
     try:
         if self.player is not None and self.player.is_playing():
-            await self.send_message(message.channel,
-                '```Already playing a song. Your song will be queued.```')
-            queue.append(message)
+            await self.send_message(message.channel, '```Already playing a song. Please wait for current' +
+                                    ' song to finish or use stop.```')
             return
         else:
             my_string = message.content
@@ -96,15 +93,6 @@ async def play(self, message):
             await self.change_status(game=now_playing, idle=False)
 
             self.player.start()
-
-            while not self.player.is_done():
-                if queue:
-                    play(self, queue[0])
-                    queue.remove(queue[0])
-                else: 
-                    break
-
-                
 
     except Exception as e:
         await self.send_message(message.channel,
